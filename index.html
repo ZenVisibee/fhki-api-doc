@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FHKI - api</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+
+    <link rel="stylesheet" href="./style/index.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <main id="app" class="flex items-stretch h-[100vh]">
+      <aside class="bg-slate-800 p-5 min-w-[200px]">
+        <ul class="text-white max-h-full overflow-y-auto">
+          <li v-for="(resource, index) in resources" @click="handleClick(index)" class="cursor-pointer mb-5"
+            :class="{ 'text-emerald-300': currentIndex === index }">
+            {{ resource }}
+          </li>
+        </ul>
+      </aside>
+      <section class="p-5 flex-1">
+        <h3 class="mb-5 text-lg">request.body for <span class="font-bold">{{resources[currentIndex]}}</span></h3>
+        <pre class="pre-code rounded-lg bg-neutral-200 p-5 w-full max-h-[95%] overflow-y-auto">{{JSON.stringify(schemas[currentIndex], function(key, value) {
+          if (key === 'type') {
+            return value.name; // Preserve the type key's value
+          }
+          return value;
+        }, 2).replace(/\\n/g, '\n')
+          .replace(/\\t/g, '\t')}}</pre>
+      </section>
+    </main>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+
+</html>
