@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <main id="app" class="flex items-stretch h-[100vh]">
+    <main id="app" class="flex items-stretch h-[100vh] overflow-hidden">
       <aside class="bg-slate-800 p-5 min-w-[200px]">
         <ul class="text-white max-h-full overflow-y-auto custom-scrollbar">
           <li v-for="(resource, index) in resources" @click="handleClick(index)" class="cursor-pointer mb-5"
@@ -23,15 +23,17 @@
           </li>
         </ul>
       </aside>
-      <section class="p-5 flex-1">
+      <section class="p-5 flex-1 flex flex-col">
         <h3 class="mb-5 text-lg">request body for <span class="font-bold">{{resources[currentIndex]}}</span></h3>
-        <pre class="custom-scrollbar rounded-lg bg-neutral-200 p-5 w-full max-h-[95%] overflow-y-auto">{{JSON.stringify(schemas[currentIndex], function(key, value) {
-          if (key === 'type') {
-            return value.name; // Preserve the type key's value
-          }
-          return value;
-        }, 2).replace(/\\n/g, '\n')
-          .replace(/\\t/g, '\t')}}</pre>
+        <div class="wrapper rounded-lg bg-neutral-200 p-5 flex-1">
+          <pre class="custom-scrollbar overflow-y-auto h-full">{{JSON.stringify(schemas[currentIndex], function(key, value) {
+            if (key === 'type') {
+              return value.name; // Preserve the type key's value
+            }
+            return value;
+          }, 2).replace(/\\n/g, '\n')
+            .replace(/\\t/g, '\t')}}</pre>
+        </div>
       </section>
     </main>
 

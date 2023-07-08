@@ -1,3 +1,12 @@
+const emailType = {
+  type: String,
+  format: "email"
+}
+const googleType = {
+  type: String,
+  format: "[google-recaptcha]"
+}
+
 const req_post_account = {
   coreloy_salutation1: {
     type: Number,
@@ -67,10 +76,7 @@ const req_post_account_activate = {
 
 const req_post_account_session = {
   form: {
-    username: {
-      type: String,
-      format: "email"
-    },
+    username: emailType,
     password: {
       type: String
     },
@@ -78,15 +84,29 @@ const req_post_account_session = {
       type: Boolean
     }
   },
-  google: {
-    type: String,
-    format: "[google recaptcha]"
-  }
+  google: googleType
 }
 
 const req_delete_account_session = {
   "[cookie-in-headers]": {
     personalization: "[cookie value]"
+  }
+}
+
+const req_post_reset_password_send_email = {
+  email: emailType,
+  google: googleType
+}
+
+const req_post_reset_password_confirm = {
+  token: {
+    type: String
+  },
+  password: {
+    type: String
+  },
+  reEnterPassword: {
+    type: String
   }
 }
 
@@ -97,13 +117,17 @@ new Vue({
       "POST - /account",
       "POST - /account/activate",
       "POST - /account/session",
-      "DELETE - /account/session"
+      "DELETE - /account/session",
+      "POST - /account/reset-password/send-email",
+      "POST - /account/reset-password/confirm"
     ],
     schemas: [
       req_post_account,
       req_post_account_activate,
       req_post_account_session,
-      req_delete_account_session
+      req_delete_account_session,
+      req_post_reset_password_send_email,
+      req_post_reset_password_confirm
     ],
     currentIndex: 0
   },
