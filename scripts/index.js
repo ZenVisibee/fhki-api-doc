@@ -65,16 +65,45 @@ const req_post_account_activate = {
   }
 }
 
+const req_post_account_session = {
+  form: {
+    username: {
+      type: String,
+      format: "email"
+    },
+    password: {
+      type: String
+    },
+    consent: {
+      type: Boolean
+    }
+  },
+  google: {
+    type: String,
+    format: "[google recaptcha]"
+  }
+}
+
+const req_delete_account_session = {
+  "[cookie-in-headers]": {
+    personalization: "[cookie value]"
+  }
+}
+
 new Vue({
   el: '#app',
   data: {
     resources: [
       "POST - /account",
-      "POST - /account/activate"
+      "POST - /account/activate",
+      "POST - /account/session",
+      "DELETE - /account/session"
     ],
     schemas: [
       req_post_account,
-      req_post_account_activate
+      req_post_account_activate,
+      req_post_account_session,
+      req_delete_account_session
     ],
     currentIndex: 0
   },
