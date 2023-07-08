@@ -16,7 +16,7 @@
   <body>
     <main id="app" class="flex items-stretch h-[100vh]">
       <aside class="bg-slate-800 p-5 min-w-[200px]">
-        <ul class="text-white max-h-full overflow-y-auto">
+        <ul class="text-white max-h-full overflow-y-auto custom-scrollbar">
           <li v-for="(resource, index) in resources" @click="handleClick(index)" class="cursor-pointer mb-5"
             :class="{ 'text-emerald-300': currentIndex === index }">
             {{ resource }}
@@ -24,8 +24,8 @@
         </ul>
       </aside>
       <section class="p-5 flex-1">
-        <h3 class="mb-5 text-lg">request.body for <span class="font-bold">{{resources[currentIndex]}}</span></h3>
-        <pre class="pre-code rounded-lg bg-neutral-200 p-5 w-full max-h-[95%] overflow-y-auto">{{JSON.stringify(schemas[currentIndex], function(key, value) {
+        <h3 class="mb-5 text-lg">request body for <span class="font-bold">{{resources[currentIndex]}}</span></h3>
+        <pre class="custom-scrollbar rounded-lg bg-neutral-200 p-5 w-full max-h-[95%] overflow-y-auto">{{JSON.stringify(schemas[currentIndex], function(key, value) {
           if (key === 'type') {
             return value.name; // Preserve the type key's value
           }
