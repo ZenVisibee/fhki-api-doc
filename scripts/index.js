@@ -13,13 +13,9 @@ const cookieType = {
 
 const req_post_account = {
   form: {
-    _id: {
-      type: String,
-      default: "uuid.v1",
-    },
     contactid: {
       type: String,
-      default: "uuid.v1",
+      default: "uuid.v1"
     },
     coreloy_salutation1: {
       type: Number,
@@ -30,20 +26,21 @@ const req_post_account = {
     coreloy_consent: {
       type: Boolean,
     },
-    coreloy_salutation1: {
-      type: Number,
-    },
     emailaddress1: {
       type: String,
+      required: true,
     },
     firstname: {
       type: String,
+      required: true,
     },
     jobtitle: {
       type: String,
+      required: true,
     },
     lastname: {
       type: String,
+      required: true,
     },
     new_firstnamechinese: {
       type: String,
@@ -56,7 +53,7 @@ const req_post_account = {
     },
     new_websiteaccountcreationdate: {
       type: Date,
-      default: Date.now,
+      default: "Date.now",
     },
     new_websiteaccountstatus: {
       type: Number,
@@ -64,25 +61,28 @@ const req_post_account = {
     },
     new_websitecompanyname: {
       type: String,
+      required: true,
     },
     new_websitecompanynamechinese: {
       type: String,
     },
     new_websitepassword: {
       type: String,
+      required: true,
     },
     telephone1: {
       type: String,
+      required: true,
     },
     statecode: {
       type: Number,
       default: 0,
     },
     address1_line1: {
-      type: String,
+      type: String
     },
     address1_line2: {
-      type: String,
+      type: String
     },
     new_districtlookup: {
       type: String,
@@ -92,7 +92,7 @@ const req_post_account = {
     },
     coreloy_company1: {
       type: String,
-    },
+    }
   },
   google: googleType,
 };
